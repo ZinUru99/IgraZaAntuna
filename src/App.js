@@ -7,24 +7,25 @@ export default class App extends Component {
     super(props);
     this.state = {
       highscore: 100,
-      zamisljeniBroj: 50,
+      brojPokusaja: 0,
+      feedback: "",
+      zamisljeniBroj: Math.floor(Math.random() * 101),
     };
-    setInterval(() => {
-      this.setState({ ...this.state, highscore: this.state.highscore - 1 });
-    }, 2000);
   }
 
-  ggg = { a: 5, b: 10 };
+  promijeniStanje = () => {
+    this.setState({ ...this.state, brojPokusaja: this.state.brojPokusaja + 1 });
+  };
 
   render() {
     return (
       <div style={{ textAlign: "center" }}>
-        <Igrica />
-        <Highscore
-          sime='frane'
-          highscore={this.state.highscore}
-          {...this.ggg}
+        <Igrica
+          brojPokusaja={this.state.brojPokusaja}
+          zamisljeniBroj={this.state.zamisljeniBroj}
+          promijeniStanje={() => this.promijeniStanje()}
         />
+        <Highscore />
       </div>
     );
   }
