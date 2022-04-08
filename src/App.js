@@ -13,8 +13,31 @@ export default class App extends Component {
     };
   }
 
-  promijeniStanje = () => {
-    this.setState({ ...this.state, brojPokusaja: this.state.brojPokusaja + 1 });
+  promijeniStanje = (feedback) => {
+    if (feedback === "pogodak") {
+      let noviBroj = Math.floor(Math.random() * 101);
+      this.setState({
+        ...this.state,
+        brojPokusaja: 0,
+        zamisljeniBroj: noviBroj,
+        feedback:
+          "Pobijedili ste. Pogodili ste iz " +
+          this.state.brojPokusaja +
+          ". puta. Zaigrajte ponovno.",
+      });
+    } else if (feedback === "manji") {
+      this.setState({
+        ...this.state,
+        brojPokusaja: this.state.brojPokusaja + 1,
+        feedback: "Zamišljeni broj je manji od unesenog!",
+      });
+    } else if (feedback === "veći") {
+      this.setState({
+        ...this.state,
+        brojPokusaja: this.state.brojPokusaja + 1,
+        feedback: "Zamišljeni broj je veći od unesenog!",
+      });
+    }
   };
 
   render() {
@@ -23,7 +46,8 @@ export default class App extends Component {
         <Igrica
           brojPokusaja={this.state.brojPokusaja}
           zamisljeniBroj={this.state.zamisljeniBroj}
-          promijeniStanje={() => this.promijeniStanje()}
+          feedback={this.state.feedback}
+          promijeniStanje={(feedback) => this.promijeniStanje(feedback)}
         />
         <Highscore />
       </div>

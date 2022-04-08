@@ -1,10 +1,24 @@
 import React from "react";
 
-const Igrica = ({ brojPokusaja, zamisljeniBroj, promijeniStanje }) => {
+const Igrica = ({
+  brojPokusaja,
+  zamisljeniBroj,
+  promijeniStanje,
+  feedback,
+}) => {
   function provjeri(e) {
+    console.log("u igrici");
     e.preventDefault();
     let uneseniBroj = e.target.childNodes[0].value;
-    promijeniStanje();
+    if (uneseniBroj < zamisljeniBroj) {
+      //zam broj je veći
+      promijeniStanje("veći");
+    } else if (uneseniBroj > zamisljeniBroj) {
+      //zam broj je manji
+      promijeniStanje("manji");
+    } else {
+      promijeniStanje("pogodak");
+    }
   }
 
   return (
@@ -16,7 +30,7 @@ const Igrica = ({ brojPokusaja, zamisljeniBroj, promijeniStanje }) => {
           placeholder='Pogodite broj koji sam zamislio (0 - 100)'></input>
       </form>
       <div id='pokusaji'>Broj pokušaja: {brojPokusaja}</div>
-      <div id='feedback'></div>
+      <div id='feedback'>{feedback}</div>
     </div>
   );
 };
