@@ -7,9 +7,9 @@ const Igrica = ({
   feedback,
 }) => {
   function provjeri(e) {
-    console.log("u igrici");
     e.preventDefault();
     let uneseniBroj = e.target.childNodes[0].value;
+    e.target.childNodes[0].value = "";
     if (uneseniBroj < zamisljeniBroj) {
       //zam broj je veći
       promijeniStanje("veći");

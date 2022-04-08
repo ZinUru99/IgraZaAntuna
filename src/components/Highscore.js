@@ -1,10 +1,12 @@
 import React from "react";
 
-const Highscore = ({ highscore, sime, a, b }) => {
+const Highscore = ({ highscore }) => {
   return (
-    <div>
-      {sime} - Trenutni {a} highscore {b}: {highscore}
-    </div>
+    <ul>
+      {highscore.map((element, index) => {
+        return <li key={index}>{element}</li>;
+      })}
+    </ul>
   );
 };
 
