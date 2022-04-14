@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ handleLogin }) => {
   return (
     <form id='loginForma'>
       <div className='form-outline mb-4 text-center'>
@@ -12,11 +13,14 @@ const Login = () => {
         <input type='text' id='form2Example1' className='form-control' />
       </div>
 
-      <button
+      <Link
+        to='/igra1'
+        onClick={() => handleLogin("Antun")}
         type='button'
         className='btn btn-primary btn-block mb-4 form-control'>
+        {" "}
         Log in
-      </button>
+      </Link>
 
       <div className='text-center'>
         <button type='button' className='btn btn-link btn-floating mx-1'>
