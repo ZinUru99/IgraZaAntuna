@@ -3,19 +3,33 @@ import { Link } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./Login.css";
 
-const Login = ({ handleLogin }) => {
+const Login = ({ handleLogin, inputName }) => {
+  const handleInput = (e) => {
+    handleLogin("", e.target.value);
+  };
+
+  const handleSetUsername = () => {
+    handleLogin(inputName);
+  };
+
   return (
     <form id='loginForma'>
       <div className='form-outline mb-4 text-center'>
         <label className='form-label' htmlFor='form2Example1'>
           Username:
         </label>
-        <input type='text' id='form2Example1' className='form-control' />
+        <input
+          type='text'
+          value={inputName}
+          onChange={(e) => handleInput(e)}
+          id='form2Example1'
+          className='form-control'
+        />
       </div>
 
       <Link
         to='/igra1'
-        onClick={() => handleLogin("Antun")}
+        onClick={() => handleSetUsername()}
         type='button'
         className='btn btn-primary btn-block mb-4 form-control'>
         {" "}
