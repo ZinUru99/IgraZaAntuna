@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import IgraPogadjanjeBrojeva from "./components/IgraPogadjanjeBrojeva";
-import Highscore from "./components/Highscore";
+import Highscore from "./components/Highscore/Index";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
+import Igra1Highscore from "./components/Highscore/Igra1";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -117,8 +118,9 @@ export default class App extends Component {
             />
             <Route
               path='/highscore'
-              element={<Highscore highscore={this.state.highscore} />}
-            />
+              element={<Highscore highscore={this.state.highscore} />}>
+              <Route path='igra1' element={<Igra1Highscore />} />
+            </Route>
           </Routes>
         </main>
         <Footer />
