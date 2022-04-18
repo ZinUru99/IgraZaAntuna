@@ -34,6 +34,10 @@ export default class App extends Component {
         };
   }
 
+  componentDidUpdate() {
+    console.log("evo me");
+  }
+
   handleLogin = (username = "", inputName = "") => {
     this.setState((state) => {
       return { username: username, inputName: inputName };
@@ -119,7 +123,15 @@ export default class App extends Component {
             <Route
               path='/highscore'
               element={<Highscore highscore={this.state.highscore} />}>
-              <Route path='igra1' element={<Igra1Highscore />} />
+              <Route
+                path='igra1'
+                element={
+                  <Igra1Highscore
+                    highscore={this.state.highscore}
+                    username={this.state.username}
+                  />
+                }
+              />
             </Route>
           </Routes>
         </main>
