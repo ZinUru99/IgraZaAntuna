@@ -6,8 +6,10 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Igra1Highscore from "./components/Highscore/Igra1";
 import VjezbamoHookice from "./components/VjezbamoHookice";
-
+import ProbaKonteksta from "./containers/ProbaKonteksta";
 import izracunajIgru1 from "./services/izracunajIgru1";
+
+import { MojaTemaContext } from "./services/konteksti";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -52,51 +54,57 @@ export default class App extends Component {
 
   render() {
     return (
-      <div id='nasApp'>
-        <VjezbamoHookice />
-        <Header />
-        <main>
-          <Routes>
-            <Route
-              path='/'
-              element={
-                <Login
-                  inputName={this.state.inputName}
-                  handleLogin={(username, inputName) =>
-                    this.handleLogin(username, inputName)
-                  }
-                />
-              }
-            />
-            <Route
-              path='/igra1'
-              element={
-                <IgraPogadjanjeBrojeva
-                  brojPokusaja={this.state.brojPokusaja}
-                  zamisljeniBroj={this.state.zamisljeniBroj}
-                  username={this.state.username}
-                  feedback={this.state.feedback}
-                  promijeniStanje={(feedback) => this.promijeniStanje(feedback)}
-                />
-              }
-            />
-            <Route
-              path='/highscore'
-              element={<Highscore highscore={this.state.highscore} />}>
+      <MojaTemaContext.Provider
+        value={{ pozdrav: "Dobar dan", odzdrav: "laku noć" }}>
+        <div id='nasApp'>
+          <VjezbamoHookice />
+          <ProbaKonteksta />
+          <Header />
+          <main>
+            <Routes>
               <Route
-                path='igra1'
+                path='/'
                 element={
-                  <Igra1Highscore
-                    highscore={this.state.highscore}
-                    username={this.state.username}
+                  <Login
+                    inputName={this.state.inputName}
+                    handleLogin={(username, inputName) =>
+                      this.handleLogin(username, inputName)
+                    }
                   />
                 }
               />
-            </Route>
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+              <Route
+                path='/igra1'
+                element={
+                  <IgraPogadjanjeBrojeva
+                    brojPokusaja={this.state.brojPokusaja}
+                    zamisljeniBroj={this.state.zamisljeniBroj}
+                    username={this.state.username}
+                    feedback={this.state.feedback}
+                    promijeniStanje={(feedback) =>
+                      this.promijeniStanje(feedback)
+                    }
+                  />
+                }
+              />
+              <Route
+                path='/highscore'
+                element={<Highscore highscore={this.state.highscore} />}>
+                <Route
+                  path='igra1'
+                  element={
+                    <Igra1Highscore
+                      highscore={this.state.highscore}
+                      username={this.state.username}
+                    />
+                  }
+                />
+              </Route>
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </MojaTemaContext.Provider>
     );
   }
 }

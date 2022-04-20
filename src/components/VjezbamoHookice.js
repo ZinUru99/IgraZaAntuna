@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { MojaTemaContext } from "../services/konteksti";
 
 const VjezbamoHookice = () => {
   const [brojac, setBrojac] = useState(0);
   const [brojacUnazad, setBrojacUnazad] = useState(0);
+
+  const tema = useContext(MojaTemaContext);
 
   /*
   //najjednostavniji useEffect, za bilo koju promijenu stanja se aktivira
@@ -33,6 +36,7 @@ const VjezbamoHookice = () => {
 
   return (
     <>
+      {tema.odzdrav}
       <h1>Brojač: {brojac}</h1>
       <h1>Brojač unazad: {brojacUnazad}</h1>
       <button onClick={promijeniStanje}>Povećaj brojač</button>
