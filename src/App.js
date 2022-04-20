@@ -5,6 +5,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Igra1Highscore from "./components/Highscore/Igra1";
+import VjezbamoHookice from "./components/VjezbamoHookice";
+
+import izracunajIgru1 from "./services/izracunajIgru1";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -15,23 +18,20 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     const stanjeIzBrowsera = JSON.parse(localStorage.getItem("stanje"));
-    this.state = stanjeIzBrowsera
-      ? {
-          highscore: stanjeIzBrowsera.highscore,
-          brojPokusaja: 0,
-          feedback: "",
-          username: "",
-          inputName: "",
-          zamisljeniBroj: Math.floor(Math.random() * 101),
-        }
-      : {
-          highscore: { pogadjanjeBrojeva: [], igraBoja: [] },
-          brojPokusaja: 0,
-          feedback: "",
-          username: "",
-          inputName: "",
-          zamisljeniBroj: Math.floor(Math.random() * 101),
-        };
+    const inicijalnoStanje = {
+      highscore: stanjeIzBrowsera
+        ? stanjeIzBrowsera.highscore
+        : {
+            pogadjanjeBrojeva: [],
+            igraBoja: [],
+          },
+      brojPokusaja: 0,
+      feedback: "",
+      username: "",
+      inputName: "",
+      zamisljeniBroj: Math.floor(Math.random() * 101),
+    };
+    this.state = inicijalnoStanje;
   }
 
   componentDidUpdate() {
@@ -45,48 +45,7 @@ export default class App extends Component {
   };
 
   promijeniStanje = (feedback) => {
-    let novoStanje;
-    if (feedback === "pogodak") {
-      let noviBroj = Math.floor(Math.random() * 101);
-      let stariHighscore = this.state.highscore.pogadjanjeBrojeva;
-      let rezultatKojegUnosimo = this.state.brojPokusaja + 1;
-      let userObject = {
-        ime: this.state.username,
-        rezultat: rezultatKojegUnosimo,
-      };
-
-      let index = stariHighscore.findIndex((element) => {
-        return element.rezultat >= rezultatKojegUnosimo;
-      });
-      if (index == -1) index = stariHighscore.length;
-      stariHighscore.splice(index, 0, userObject);
-
-      novoStanje = {
-        ...this.state,
-        highscore: {
-          ...this.state.highscore,
-          pogadjanjeBrojeva: [...this.state.highscore.pogadjanjeBrojeva],
-        },
-        brojPokusaja: 0,
-        zamisljeniBroj: noviBroj,
-        feedback:
-          "Pobijedili ste. Pogodili ste iz " +
-          (this.state.brojPokusaja + 1) +
-          ". puta. Zaigrajte ponovno.",
-      };
-    } else if (feedback === "manji") {
-      novoStanje = {
-        ...this.state,
-        brojPokusaja: this.state.brojPokusaja + 1,
-        feedback: "Zamišljeni broj je manji od unesenog!",
-      };
-    } else if (feedback === "veći") {
-      novoStanje = {
-        ...this.state,
-        brojPokusaja: this.state.brojPokusaja + 1,
-        feedback: "Zamišljeni broj je veći od unesenog!",
-      };
-    }
+    let novoStanje = izracunajIgru1(feedback, this.state);
     localStorage.setItem("stanje", JSON.stringify(novoStanje));
     this.setState(novoStanje);
   };
@@ -94,6 +53,7 @@ export default class App extends Component {
   render() {
     return (
       <div id='nasApp'>
+        <VjezbamoHookice />
         <Header />
         <main>
           <Routes>
