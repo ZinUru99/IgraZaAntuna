@@ -3,6 +3,27 @@ import { useState } from "react";
 
 const PrikazHighscorea = ({ parcijalniHighscore }) => {
   const [input, setInput] = useState("najbolji");
+  const brojIzlistanih = 7;
+
+  const sloziPrikazListe = () => {
+    if (input === "najbolji") {
+      return parcijalniHighscore.slice(0, brojIzlistanih).map(callbackNas);
+    } else {
+      return parcijalniHighscore
+        .reverse()
+        .slice(0, brojIzlistanih)
+        .map(callbackNas);
+    }
+  };
+
+  const callbackNas = (element, index) => {
+    return (
+      <li key={index}>
+        {element.ime} - {element.rezultat}
+      </li>
+    );
+  };
+
   return (
     <div>
       <select value={input} onChange={(e) => setInput(e.target.value)}>
@@ -12,7 +33,7 @@ const PrikazHighscorea = ({ parcijalniHighscore }) => {
         <option value='najgori'>Najgori rezultati</option>
       </select>
 
-      <ul>{input}</ul>
+      <ul>{sloziPrikazListe()}</ul>
     </div>
   );
 };

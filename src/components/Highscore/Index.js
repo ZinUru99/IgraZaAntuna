@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Link, Outlet } from "react-router-dom";
 
 const Highscore = ({ highscore }) => {
+  /*
   const [cijeliHighscore, setCijeliHighscore] = useState(highscore);
   const [nesto, setNesto] = useState("Nesto pise");
 
@@ -14,13 +15,15 @@ const Highscore = ({ highscore }) => {
   };
 
   useEffect(callbackFunction, [nesto]);
-
+  */
   return (
     <div>
+      {/*
       {nesto}
       <button onClick={() => setNesto(nesto + "A")}>
         Promijeni stanje uneseno hookicom
       </button>
+      */}
       <nav className='nav'>
         <NavLink
           className={({ isActive }) => {

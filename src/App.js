@@ -5,8 +5,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Igra1Highscore from "./components/Highscore/Igra1";
-import VjezbamoHookice from "./components/VjezbamoHookice";
-import ProbaKonteksta from "./containers/ProbaKonteksta";
+//import VjezbamoHookice from "./components/VjezbamoHookice";
+//import ProbaKonteksta from "./containers/ProbaKonteksta";
 import izracunajIgru1 from "./services/izracunajIgru1";
 
 import { MojaTemaContext } from "./services/konteksti";
@@ -57,8 +57,6 @@ export default class App extends Component {
       <MojaTemaContext.Provider
         value={{ pozdrav: "Dobar dan", odzdrav: "laku noć" }}>
         <div id='nasApp'>
-          <VjezbamoHookice />
-          <ProbaKonteksta />
           <Header />
           <main>
             <Routes>
