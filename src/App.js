@@ -9,12 +9,15 @@ import Igra1Highscore from "./components/Highscore/Igra1";
 //import ProbaKonteksta from "./containers/ProbaKonteksta";
 import izracunajIgru1 from "./services/izracunajIgru1";
 
+import IvaninaIgra from "./containers/IvaninaIgra";
+
 import { MojaTemaContext } from "./services/konteksti";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { array } from "prop-types";
 
 export default class App extends Component {
   constructor(props) {
@@ -26,6 +29,7 @@ export default class App extends Component {
         : {
             pogadjanjeBrojeva: [],
             igraBoja: [],
+            ivaninaIgra: [],
           },
       brojPokusaja: 0,
       feedback: "",
@@ -54,6 +58,19 @@ export default class App extends Component {
     let novoStanje = izracunajIgru1(feedback, this.state);
     localStorage.setItem("stanje", JSON.stringify(novoStanje));
     this.setState(novoStanje);
+  };
+
+  //Kada budeš pozivao ofu funkciju iz svog koda ne zaboravi dati ova 2 parametra
+  dodajHighscoreUStanje = (imeIgre, noviRezultat) => {
+    this.setState((state) => {
+      const staro = !state.highscore[imeIgre] ? [] : state.highscore[imeIgre];
+      return {
+        highscore: {
+          ...state.highscore,
+          [imeIgre]: [...staro, noviRezultat],
+        },
+      };
+    });
   };
 
   render() {
@@ -86,6 +103,17 @@ export default class App extends Component {
                     promijeniStanje={(feedback) =>
                       this.promijeniStanje(feedback)
                     }
+                  />
+                }
+              />
+              <Route
+                path='/ivaninaIgra'
+                element={
+                  <IvaninaIgra
+                    dodajUHighscore={(imePropa, vrijednostPropa) =>
+                      this.dodajHighscoreUStanje(imePropa, vrijednostPropa)
+                    }
+                    username={this.state.username}
                   />
                 }
               />

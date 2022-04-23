@@ -30,6 +30,11 @@ const Header = () => {
                 </Link>
               </li>
               <li className='nav-item'>
+                <Link to='/ivaninaIgra' className='nav-link'>
+                  Ivanina igra
+                </Link>
+              </li>
+              <li className='nav-item'>
                 <Link to='/highscore' className='nav-link'>
                   Highscore
                 </Link>
