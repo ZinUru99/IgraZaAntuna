@@ -36,6 +36,10 @@ export default class App extends Component {
     this.state = inicijalnoStanje;
   }
 
+  static defaultProps = {
+    proizvod: "Čekić",
+  };
+
   componentDidUpdate() {
     console.log("evo me");
   }

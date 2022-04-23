@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useState } from "react";
 
 const PrikazHighscorea = ({ parcijalniHighscore }) => {
@@ -36,6 +37,15 @@ const PrikazHighscorea = ({ parcijalniHighscore }) => {
       <ul>{sloziPrikazListe()}</ul>
     </div>
   );
+};
+
+PrikazHighscorea.propTypes = {
+  parcijalniHighscore: PropTypes.arrayOf(
+    PropTypes.shape({
+      ime: PropTypes.string.isRequired,
+      rezultat: PropTypes.number.isRequired,
+    })
+  ),
 };
 
 export default PrikazHighscorea;
