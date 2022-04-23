@@ -157,42 +157,45 @@ const Board = ({username }) => {
     return (
       <div className="main">
             {/* Shrinks the popup when there is no winner */}
-            <div className={`winner ${winner !== '' ? '' : 'shrink'}`}>
+            <div className="content-UI text-center">
             {/* Display the current winner */}
-            <div className='winner-text'>{winner}</div>
+            <div className='winner-text'>{winner}</div> <br />
             {/* Button used to reset the board */}
             <button onClick={() => resetBoard()}>
                           Reset Board
                       </button>
           </div>
         
-          <div ref={boardRef} className="board">
-              <div className="input input-1" 
-                  onClick={(e) => draw(e, 1)}></div>
-              <div className="input input-2" 
-                  onClick={(e) => draw(e, 2)}></div>
-              <div className="input input-3" 
-                  onClick={(e) => draw(e, 3)}></div>
-              <div className="input input-4" 
-                  onClick={(e) => draw(e, 4)}></div>
-              <div className="input input-5" 
-                  onClick={(e) => draw(e, 5)}></div>
-              <div className="input input-6" 
-                  onClick={(e) => draw(e, 6)}></div>
-              <div className="input input-7" 
-                  onClick={(e) => draw(e, 7)}></div>
-              <div className="input input-8" 
-                  onClick={(e) => draw(e, 8)}></div>
-              <div className="input input-9" 
-                  onClick={(e) => draw(e, 9)}></div>
+          <div className="content-board d-flex justify-content-center flex-wrap">
+            <div ref={boardRef} className="board">
+                <div className="input input-1" 
+                    onClick={(e) => draw(e, 1)}></div>
+                <div className="input input-2" 
+                    onClick={(e) => draw(e, 2)}></div>
+                <div className="input input-3" 
+                    onClick={(e) => draw(e, 3)}></div>
+                <div className="input input-4" 
+                    onClick={(e) => draw(e, 4)}></div>
+                <div className="input input-5" 
+                    onClick={(e) => draw(e, 5)}></div>
+                <div className="input input-6" 
+                    onClick={(e) => draw(e, 6)}></div>
+                <div className="input input-7" 
+                    onClick={(e) => draw(e, 7)}></div>
+                <div className="input input-8" 
+                    onClick={(e) => draw(e, 8)}></div>
+                <div className="input input-9" 
+                    onClick={(e) => draw(e, 9)}></div>
 
-          
-          </div>
-
-          <div className="info">
+            
+            </div>
+            <div className="info content-info">
               <div className="player">{username}: X</div>
               <div className="player">CPU: O</div>
           </div>
+          </div>
+
+          
           
       </div>
     )
