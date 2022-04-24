@@ -1,10 +1,11 @@
-// Importing the CSS for the board
-import "./IgraTicTacDome.css";
+
   
 // Importing the useState hook, useEffect hook and useRef hook
 import { useState, useEffect, useRef } from "react";
-  
-const Board = ({username }) => {
+
+let rezultat=0;
+
+const Board = ({username, dodajRezultat }) => {
      // Creating a reset state, which indicates whether 
     // the game should be reset or not
     const [reset, setReset] = useState(false);
@@ -29,8 +30,9 @@ const Board = ({username }) => {
     const handleChange = () => {
         setVsCPU(!vsCPU);
       };
-    
     const firstMoveMade=data.filter(word => word.length == 1).length<1 ? false : true;
+
+
     // Function to draw on the board
     const draw = (event, index) => {
         // Draws only if the position is not taken 
@@ -67,6 +69,7 @@ const Board = ({username }) => {
             setTurn(turn === 0 ? 1 : 0)
       }
     }
+    
     }
 
     // UseEffect hook used to reset the board whenever 
@@ -175,8 +178,26 @@ const Board = ({username }) => {
           }, 1000);
 
     }
-  
+
+   
     })
+
+    useEffect(()=>{
+
+        if(winner==="Player 1 Wins!"){
+            rezultat++;
+            dodajRezultat(rezultat);
+            console.log(rezultat);
+        }else if(winner==="Player 2 Wins!"){
+            rezultat--;
+            dodajRezultat(rezultat);
+            console.log(rezultat);
+        }
+    },[winner,setWinner])
+   
+    useEffect(()=>{
+        rezultat=0
+    },[username])
     const resetBoard = () => {
       setReset(true);
   }
