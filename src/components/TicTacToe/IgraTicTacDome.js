@@ -24,7 +24,7 @@ render() {
   
 return (
   <div className="main">
-     {this.props.username || <Navigate to='/' replace={true} />}
+     {this.props.username || <Navigate to='/' replace={true} />}: {this.state.rezultat}
      <br/>
     <button
           onClick={() => {
