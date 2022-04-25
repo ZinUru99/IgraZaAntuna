@@ -12,7 +12,6 @@ createRoot(document.getElementById("root")).render(
   </BrowserRouter>
 );
 
-console.log(App.defaultProps);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

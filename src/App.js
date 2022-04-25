@@ -10,6 +10,7 @@ import Igra1Highscore from "./components/Highscore/Igra1";
 import izracunajIgru1 from "./services/izracunajIgru1";
 
 import IvaninaIgra from "./containers/IvaninaIgra";
+import FloodGame from "./containers/Flood-It/Game.js";
 
 import { MojaTemaContext } from "./services/konteksti";
 
@@ -76,13 +77,14 @@ export default class App extends Component {
   render() {
     return (
       <MojaTemaContext.Provider
-        value={{ pozdrav: "Dobar dan", odzdrav: "laku noć" }}>
-        <div id='nasApp'>
+        value={{ pozdrav: "Dobar dan", odzdrav: "laku noć" }}
+      >
+        <div id="nasApp">
           <Header />
           <main>
             <Routes>
               <Route
-                path='/'
+                path="/"
                 element={
                   <Login
                     inputName={this.state.inputName}
@@ -93,7 +95,7 @@ export default class App extends Component {
                 }
               />
               <Route
-                path='/igra1'
+                path="/igra1"
                 element={
                   <IgraPogadjanjeBrojeva
                     brojPokusaja={this.state.brojPokusaja}
@@ -107,7 +109,7 @@ export default class App extends Component {
                 }
               />
               <Route
-                path='/ivaninaIgra'
+                path="/ivaninaIgra"
                 element={
                   <IvaninaIgra
                     dodajUHighscore={(imePropa, vrijednostPropa) =>
@@ -118,10 +120,22 @@ export default class App extends Component {
                 }
               />
               <Route
-                path='/highscore'
-                element={<Highscore highscore={this.state.highscore} />}>
+                path="/alanovaIgra"
+                element={
+                  <FloodGame
+                    dodajUHighscore={(imePropa, vrijednostPropa) =>
+                      this.dodajHighscoreUStanje(imePropa, vrijednostPropa)
+                    }
+                    username={this.state.username}
+                  />
+                }
+              />
+              <Route
+                path="/highscore"
+                element={<Highscore highscore={this.state.highscore} />}
+              >
                 <Route
-                  path='igra1'
+                  path="igra1"
                   element={
                     <Igra1Highscore
                       highscore={this.state.highscore}
