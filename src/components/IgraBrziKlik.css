@@ -1,0 +1,33 @@
+.brziKlikInnerDiv
+{
+    margin: 0 auto;
+    padding: 2em 0em;
+    width: 70%;
+    height: auto;
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.brziKlikText
+{
+    padding: 2em 0em;
+}
+.brziKlikText p
+{
+    text-align: center;
+}
+.clickButton
+{
+    border: 1px solid rgb(198, 198, 198);
+    border-radius: 15%;
+    width: 50%;
+    height: 15em;
+    text-align: center;
+}
+
+.clickButton:active
+{
+    background-color: rgb(198, 198, 198);
+}
