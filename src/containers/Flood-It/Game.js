@@ -7,6 +7,7 @@ import { colorList2 } from "./colorList.js";
 import EndScreen from "./EndScreen.js";
 import "./style.css";
 
+
 var board = [
   [5, 0, 1, 3, 5, 2, 4, 3, 1, 2],
   [2, 0, 1, 2, 5, 2, 4, 1, 1, 2],
@@ -18,7 +19,7 @@ var board = [
   [0, 5, 0, 4, 3, 1, 5, 2, 2, 3],
   [4, 3, 0, 0, 5, 5, 5, 3, 2, 4],
   [3, 0, 3, 5, 3, 2, 4, 3, 2, 3],
-];
+]; 
 
  const randomBoard = () => {
    let arr = [];
@@ -45,6 +46,7 @@ board = randomBoard();
 
 function Game(props) {
   //const [color, setColor] = useState(0); <- ovaj je nepotreban
+    const [test, setTest] = useState(1);
   const [score, setScore] = useState(0);
   const [gameState, setGameState] = useState("game");
 
@@ -122,9 +124,9 @@ function Game(props) {
   }
 
   function startNewGame(sendScore = false) {
-    console.log(score);
-    if (sendScore) {
-      props.dodajUHighscore("alanovaIgra", {
+   
+    if (sendScore == true) {
+      props.dodajUHighscore("floodIt", {
         ime: props.username,
         rezultat: score,
       });
@@ -133,10 +135,10 @@ function Game(props) {
      setGameState("game");
      setScore(0);
      flooded = [[0,0]]
+     floodOnStart();
   }
 
-  // Flood on inital
-  useEffect(() => {
+  function floodOnStart(){
     flooded = [[0, 0]];
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
@@ -148,6 +150,10 @@ function Game(props) {
         });
       }
     }
+  }
+  // Flood on inital
+  useEffect(() => {
+    floodOnStart();
   }, []);
 
   function shuffle(){
@@ -171,8 +177,9 @@ function Game(props) {
         <Board board={board}></Board>
         <div className="flood-btn-wrap">
           <button
-            onClick={() => {
-              startNewGame(false);
+            onClick={()=>{
+              setTest(test+1);
+              startNewGame();
             }}
             className="flood-btn shuffle"
           ></button>
@@ -195,5 +202,4 @@ function Game(props) {
     </React.Fragment>
   );
 }
-
 export default Game;
