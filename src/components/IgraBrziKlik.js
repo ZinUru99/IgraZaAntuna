@@ -8,7 +8,6 @@ export default class IgraBrziKlik extends Component {
             score: 0,
             timeCounter: 10,
             hasGameStarted: false,
-            isDisabled: false,
             isGameOver: false
         }
     }
@@ -30,9 +29,7 @@ export default class IgraBrziKlik extends Component {
             }
             else
             {
-                //pri završetku zovi funkcije za prekid igre i gašenje botuna
                 this.ZavrsiIGru();
-                alert("igra gotova");
                 clearInterval(timer);
             }
         }, 1000);
@@ -42,7 +39,7 @@ export default class IgraBrziKlik extends Component {
     {
         if (this.state.hasGameStarted === false) 
         {
-            this.setState({hasGameStarted: !this.state.hasGameStarted})
+            this.setState({hasGameStarted: true})
             document.getElementById("clickButton").textContent = "Klikći!";
             this.SmanjujVrijeme();
         }
@@ -51,17 +48,15 @@ export default class IgraBrziKlik extends Component {
             this.NaKlikPovecajBrojBodova();
         }
     }
-    //gasi botun i spremaj rezultate
+
     ZavrsiIGru = () =>
     {
-        this.UgasiBotun();
+        this.setState({isGameOver: true});
+        this.props.dodajUHighscore("igraBrziKlik", {
+            ime: this.props.username,
+            rezultat: this.state.score
+        })
     }
-
-    UgasiBotun = () =>
-    {
-        this.setState({isDisabled: !this.state.isDisabled})
-    }
-
 
     render() {
         return (
@@ -69,15 +64,14 @@ export default class IgraBrziKlik extends Component {
                 <div className='brziKlikInnerDiv'>
                     <div className='brziKlikText'>
                         <p>time left: {this.state.timeCounter}</p>
-                        <p></p>
-                        <p>username - number of clicks {this.state.score}</p>
+                        <p style={this.state.isGameOver ? {display: 'block'} : {display: 'none'}}>Igra je gotova</p>
+                        <p>{this.props.username} - number of clicks {this.state.score}</p>
                     </div>
                     <button type='button' id='clickButton'
-                    onClick={this.ZapocniIgru} disabled={this.state.isDisabled}>
+                    onClick={this.ZapocniIgru} disabled={this.state.isGameOver}>
                         Započni Igru
                         </button>
                 </div>
-               
             </section>
         )
     }
