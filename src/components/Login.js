@@ -28,7 +28,7 @@ const Login = ({ handleLogin, inputName }) => {
       </div>
 
       <Link
-        to='/igra1'
+        to='/'
         onClick={() => handleSetUsername()}
         type='button'
         className='btn btn-primary btn-block mb-4 form-control'>

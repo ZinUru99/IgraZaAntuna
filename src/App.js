@@ -4,15 +4,18 @@ import Highscore from "./components/Highscore/Index";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
-import Igra1Highscore from "./components/Highscore/Igra1";
+import Naslovna from "./components/Naslovna";
+import PojedinacniHighscore from "./components/Highscore/PojedinacniHighscore";
+import SkupniHighscore from "./components/Highscore/SkupniHighscore";
 //import VjezbamoHookice from "./components/VjezbamoHookice";
 //import ProbaKonteksta from "./containers/ProbaKonteksta";
 import izracunajIgru1 from "./services/izracunajIgru1";
 
 import IvaninaIgra from "./containers/IvaninaIgra";
+import FloodGame from "./containers/Flood-It/Game.js";
+import TicTacToe from "./components/TicTacToe/IgraTicTacDome";
 
 import { MojaTemaContext } from "./services/konteksti";
-
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
@@ -45,7 +48,7 @@ export default class App extends Component {
   };
 
   componentDidUpdate() {
-    console.log("evo me jfhkjfdhjkfdjkfd");
+    //console.log("evo me jfhkjfdhjkfdjkfd");
   }
 
   handleLogin = (username = "", inputName = "") => {
@@ -84,6 +87,16 @@ export default class App extends Component {
               <Route
                 path='/'
                 element={
+                  this.state.username === "" ? (
+                    <Navigate to='/login' replace={true} />
+                  ) : (
+                    <Naslovna />
+                  )
+                }
+              />
+              <Route
+                path='/login'
+                element={
                   <Login
                     inputName={this.state.inputName}
                     handleLogin={(username, inputName) =>
@@ -93,39 +106,105 @@ export default class App extends Component {
                 }
               />
               <Route
-                path='/igra1'
+                path='/pogadjanjeBrojeva'
                 element={
-                  <IgraPogadjanjeBrojeva
-                    brojPokusaja={this.state.brojPokusaja}
-                    zamisljeniBroj={this.state.zamisljeniBroj}
-                    username={this.state.username}
-                    feedback={this.state.feedback}
-                    promijeniStanje={(feedback) =>
-                      this.promijeniStanje(feedback)
-                    }
-                  />
+                  this.state.username === "" ? (
+                    <Navigate to='/login' replace={true} />
+                  ) : (
+                    <IgraPogadjanjeBrojeva
+                      brojPokusaja={this.state.brojPokusaja}
+                      zamisljeniBroj={this.state.zamisljeniBroj}
+                      username={this.state.username}
+                      feedback={this.state.feedback}
+                      promijeniStanje={(feedback) =>
+                        this.promijeniStanje(feedback)
+                      }
+                    />
+                  )
                 }
               />
               <Route
                 path='/ivaninaIgra'
                 element={
-                  <IvaninaIgra
-                    dodajUHighscore={(imePropa, vrijednostPropa) =>
-                      this.dodajHighscoreUStanje(imePropa, vrijednostPropa)
-                    }
-                    username={this.state.username}
-                  />
+                  this.state.username === "" ? (
+                    <Navigate to='/login' replace={true} />
+                  ) : (
+                    <IvaninaIgra
+                      dodajUHighscore={(imePropa, vrijednostPropa) =>
+                        this.dodajHighscoreUStanje(imePropa, vrijednostPropa)
+                      }
+                      username={this.state.username}
+                    />
+                  )
+                }
+              />
+              <Route
+                path='/alanovaIgra'
+                element={
+                  this.state.username === "" ? (
+                    <Navigate to='/login' replace={true} />
+                  ) : (
+                    <FloodGame
+                      dodajUHighscore={(imePropa, vrijednostPropa) =>
+                        this.dodajHighscoreUStanje(imePropa, vrijednostPropa)
+                      }
+                      username={this.state.username}
+                    />
+                  )
+                }
+              />
+              <Route
+                path='/domagojevaIgra'
+                element={
+                  this.state.username === "" ? (
+                    <Navigate to='/login' replace={true} />
+                  ) : (
+                    <TicTacToe
+                      dodajUHighscore={(imePropa, vrijednostPropa) =>
+                        this.dodajHighscoreUStanje(imePropa, vrijednostPropa)
+                      }
+                      username={this.state.username}
+                    />
+                  )
                 }
               />
               <Route
                 path='/highscore'
-                element={<Highscore highscore={this.state.highscore} />}>
+                element={
+                  this.state.username === "" ? (
+                    <Navigate to='/login' replace={true} />
+                  ) : (
+                    <Highscore highscore={this.state.highscore} />
+                  )
+                }>
+                <Route index element={<SkupniHighscore />} />
                 <Route
-                  path='igra1'
+                  path='pogadjanjeBrojeva'
                   element={
-                    <Igra1Highscore
+                    <PojedinacniHighscore
                       highscore={this.state.highscore}
                       username={this.state.username}
+                      imeIgre='pogadjanjeBrojeva'
+                    />
+                  }
+                />
+                <Route
+                  path='alanovaIgra'
+                  element={
+                    <PojedinacniHighscore
+                      highscore={this.state.highscore}
+                      username={this.state.username}
+                      imeIgre='floodIt'
+                    />
+                  }
+                />
+                <Route
+                  path='domagojevaIgra'
+                  element={
+                    <PojedinacniHighscore
+                      highscore={this.state.highscore}
+                      username={this.state.username}
+                      imeIgre='Križić Kružić'
                     />
                   }
                 />

@@ -6,11 +6,6 @@
 }
 
 main{
-  background-color: aquamarine;
   flex-grow: 1;
   padding: 20px;
-}
-
-footer{
-  background-color: aqua;
 }

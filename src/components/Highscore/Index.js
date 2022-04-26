@@ -24,7 +24,7 @@ const Highscore = ({ highscore }) => {
         Promijeni stanje uneseno hookicom
       </button>
       */}
-      <nav className='nav'>
+      <nav className='nav' style={{ marginBottom: "25px" }}>
         <NavLink
           className={({ isActive }) => {
             return isActive ? "nav-link active" : "nav-link";
@@ -36,15 +36,22 @@ const Highscore = ({ highscore }) => {
           className={({ isActive }) => {
             return isActive ? "nav-link active" : "nav-link";
           }}
-          to='./igra1'>
+          to='./pogadjanjeBrojeva'>
           Pogađanje brojeva
         </NavLink>
         <NavLink
           className={({ isActive }) => {
             return isActive ? "nav-link active" : "nav-link";
           }}
-          to='./igra2'>
-          Tri boje
+          to='./alanovaIgra'>
+          Flood It!
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => {
+            return isActive ? "nav-link active" : "nav-link";
+          }}
+          to='./domagojevaIgra'>
+          TICtacTOE
         </NavLink>
       </nav>
 

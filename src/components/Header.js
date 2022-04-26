@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Image from "../images/trokut_logo.png";
 
 import "./Header.css";
@@ -25,19 +25,49 @@ const Header = () => {
           <div className='collapse navbar-collapse' id='navbarNavDropdown'>
             <ul className='navbar-nav'>
               <li className='nav-item'>
-                <Link to='/igra1' className='nav-link active'>
+                <NavLink
+                  to='/pogadjanjeBrojeva'
+                  className={({ isActive }) => {
+                    return isActive ? "nav-link active" : "nav-link";
+                  }}>
                   Pogađanje Brojeva
-                </Link>
+                </NavLink>
               </li>
               <li className='nav-item'>
-                <Link to='/ivaninaIgra' className='nav-link'>
+                <NavLink
+                  to='/ivaninaIgra'
+                  className={({ isActive }) => {
+                    return isActive ? "nav-link active" : "nav-link";
+                  }}>
                   Ivanina igra
-                </Link>
+                </NavLink>
               </li>
               <li className='nav-item'>
-                <Link to='/highscore' className='nav-link'>
+                <NavLink
+                  to='/alanovaIgra'
+                  className={({ isActive }) => {
+                    return isActive ? "nav-link active" : "nav-link";
+                  }}>
+                  Flood It!
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink
+                  to='/domagojevaIgra'
+                  className={({ isActive }) => {
+                    return isActive ? "nav-link active" : "nav-link";
+                  }}>
+                  TICtacTOE
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink
+                  to='/highscore'
+                  className={({ isActive }) => {
+                    return isActive ? "nav-link active" : "nav-link";
+                  }}>
                   Highscore
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
