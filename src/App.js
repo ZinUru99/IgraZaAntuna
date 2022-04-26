@@ -14,6 +14,7 @@ import izracunajIgru1 from "./services/izracunajIgru1";
 import IvaninaIgra from "./containers/IvaninaIgra";
 import FloodGame from "./containers/Flood-It/Game.js";
 import TicTacToe from "./components/TicTacToe/IgraTicTacDome";
+import TomislavovaIgra from "./containers/t-pandzic/TomislavovaIgra";
 
 import { MojaTemaContext } from "./services/konteksti";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -154,6 +155,21 @@ export default class App extends Component {
                 }
               />
               <Route
+                path='/tomislavovaIgra'
+                element={
+                  this.state.username === "" ? (
+                    <Navigate to='/login' replace={true} />
+                  ) : (
+                    <TomislavovaIgra
+                      dodajUHighscore={(imePropa, vrijednostPropa) =>
+                        this.dodajHighscoreUStanje(imePropa, vrijednostPropa)
+                      }
+                      username={this.state.username}
+                    />
+                  )
+                }
+              />
+              <Route
                 path='/domagojevaIgra'
                 element={
                   this.state.username === "" ? (
@@ -195,6 +211,16 @@ export default class App extends Component {
                       highscore={this.state.highscore}
                       username={this.state.username}
                       imeIgre='floodIt'
+                    />
+                  }
+                />
+                <Route
+                  path='tomislavovaIgra'
+                  element={
+                    <PojedinacniHighscore
+                      highscore={this.state.highscore}
+                      username={this.state.username}
+                      imeIgre='Tomislavova Igra'
                     />
                   }
                 />
