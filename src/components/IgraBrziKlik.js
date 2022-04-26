@@ -6,7 +6,9 @@ export default class IgraBrziKlik extends Component {
 
         this.state = {
             score: 0,
-            timeCounter: 10
+            timeCounter: 10,
+            hasGameStarted: false,
+            isDisabled: false
         }
     }
 
@@ -27,27 +29,53 @@ export default class IgraBrziKlik extends Component {
             }
             else
             {
+                //pri završetku zovi funkcije za prekid igre i gašenje botuna
+                //this.ZavršiIGru();
                 alert("igra gotova");
                 clearInterval(timer);
             }
-        }, 100);
-
+        }, 1000);
     }
+
+    ZapocniIgru = () =>
+    {
+        if (this.state.hasGameStarted === false) 
+        {
+            this.setState({hasGameStarted: !this.state.hasGameStarted})
+            document.getElementById("clickButton").textContent = "Klikći!";
+            this.SmanjujVrijeme();
+        }
+        else
+        {
+            this.NaKlikPovecajBrojBodova();
+        }
+    }
+
+    ZavršiIGru = () =>
+    {
+        this.UgasiBotun();
+    }
+
+    UgasiBotun = () =>
+    {
+        this.setState({isDisabled: !this.state.isDisabled})
+    }
+
 
     render() {
         return (
             <section>
                 <div className='brziKlikInnerDiv'>
                     <div className='brziKlikText'>
-                        <p>time counter: {this.state.timeCounter}</p>
+                        <p>time left: {this.state.timeCounter}</p>
                         <p>username - number of clicks {this.state.score}</p>
                     </div>
-                    <button type='button' className='clickButton'
-                    onClick={this.NaKlikPovecajBrojBodova}>
-                        Click button
+                    <button type='button' id='clickButton'
+                    onClick={this.ZapocniIgru}>
+                        Započni Igru
                         </button>
                 </div>
-                <button type='button' onClick={this.SmanjujVrijeme}>Smanjuj vrijeme</button>
+                <button disabled={this.state.isDisabled} onClick={this.UgasiBotun}>Klikni za ugasit</button>
             </section>
         )
     }
