@@ -18,7 +18,7 @@
 {
     text-align: center;
 }
-.clickButton
+#clickButton
 {
     border: 1px solid rgb(198, 198, 198);
     border-radius: 15%;
@@ -27,7 +27,7 @@
     text-align: center;
 }
 
-.clickButton:active
+#clickButton:active
 {
     background-color: rgb(198, 198, 198);
 }
