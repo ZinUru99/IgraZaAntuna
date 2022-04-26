@@ -28,9 +28,7 @@ const PrikazHighscorea = ({ parcijalniHighscore }) => {
   return (
     <div>
       <select value={input} onChange={(e) => setInput(e.target.value)}>
-        <option selected value='najbolji'>
-          Najbolji rezultati
-        </option>
+        <option value='najbolji'>Najbolji rezultati</option>
         <option value='najgori'>Najgori rezultati</option>
       </select>
 
