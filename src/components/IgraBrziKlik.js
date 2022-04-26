@@ -8,7 +8,8 @@ export default class IgraBrziKlik extends Component {
             score: 0,
             timeCounter: 10,
             hasGameStarted: false,
-            isDisabled: false
+            isDisabled: false,
+            isGameOver: false
         }
     }
 
@@ -30,7 +31,7 @@ export default class IgraBrziKlik extends Component {
             else
             {
                 //pri završetku zovi funkcije za prekid igre i gašenje botuna
-                //this.ZavršiIGru();
+                this.ZavrsiIGru();
                 alert("igra gotova");
                 clearInterval(timer);
             }
@@ -50,8 +51,8 @@ export default class IgraBrziKlik extends Component {
             this.NaKlikPovecajBrojBodova();
         }
     }
-
-    ZavršiIGru = () =>
+    //gasi botun i spremaj rezultate
+    ZavrsiIGru = () =>
     {
         this.UgasiBotun();
     }
@@ -68,15 +69,17 @@ export default class IgraBrziKlik extends Component {
                 <div className='brziKlikInnerDiv'>
                     <div className='brziKlikText'>
                         <p>time left: {this.state.timeCounter}</p>
+                        <p></p>
                         <p>username - number of clicks {this.state.score}</p>
                     </div>
                     <button type='button' id='clickButton'
-                    onClick={this.ZapocniIgru}>
+                    onClick={this.ZapocniIgru} disabled={this.state.isDisabled}>
                         Započni Igru
                         </button>
                 </div>
-                <button disabled={this.state.isDisabled} onClick={this.UgasiBotun}>Klikni za ugasit</button>
+               
             </section>
         )
     }
 }
+
