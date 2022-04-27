@@ -1,0 +1,37 @@
+{
+  "highscore": {
+    "pogadjanjeBrojeva": [
+      { "ime": "Antun", "rezultat": 3 },
+      { "ime": "Jure", "rezultat": 2 },
+      { "ime": "Franko", "rezultat": 1 },
+      { "ime": "Antun", "rezultat": 5 },
+      { "ime": "Jure", "rezultat": 6 },
+      { "ime": "Antun", "rezultat": 9 },
+      { "ime": "Jure", "rezultat": 10 },
+      { "ime": "Franko", "rezultat": 8 }
+    ],
+    "ivaninaIgra": [],
+    "floodIt": [
+      { "ime": "Antun", "rezultat": 15 },
+      { "ime": "Jure", "rezultat": 4 },
+      { "ime": "Franko", "rezultat": 5 }
+    ],
+    "Tomislavova Igra": [
+      { "ime": "Antun", "rezultat": 11 },
+      { "ime": "Franko", "rezultat": 3 },
+      { "ime": "Janko", "rezultat": 9 },
+      { "ime": "Josip", "rezultat": 18 }
+    ],
+    "Brzi Klik": [
+      { "ime": "Antun", "rezultat": 54 },
+      { "ime": "Franko", "rezultat": 60 },
+      { "ime": "Josip", "rezultat": 21 }
+    ],
+    "Križić Kružić": [
+      { "ime": "Antun", "rezultat": 1 },
+      { "ime": "Antun", "rezultat": 1 },
+      { "ime": "Antun", "rezultat": 1 },
+      { "ime": "Antun", "rezultat": 2 }
+    ]
+  }
+}

@@ -62,6 +62,15 @@ const Header = () => {
               </li>
               <li className='nav-item'>
                 <NavLink
+                  to='/lukaFundaIgra'
+                  className={({ isActive }) => {
+                    return isActive ? "nav-link active" : "nav-link";
+                  }}>
+                  Brzi klik
+                </NavLink>
+              </li>
+              <li className='nav-item'>
+                <NavLink
                   to='/domagojevaIgra'
                   className={({ isActive }) => {
                     return isActive ? "nav-link active" : "nav-link";

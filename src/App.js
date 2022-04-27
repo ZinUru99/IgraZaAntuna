@@ -15,13 +15,15 @@ import IvaninaIgra from "./containers/IvaninaIgra";
 import FloodGame from "./containers/Flood-It/Game.js";
 import TicTacToe from "./components/TicTacToe/IgraTicTacDome";
 import TomislavovaIgra from "./containers/t-pandzic/TomislavovaIgra";
+import IgraBrziKlik from "./components/BrziKlikFunda/IgraBrziKlik";
 
 import { MojaTemaContext } from "./services/konteksti";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { array } from "prop-types";
+
+import pocetnoStanjeIzFilea from "./services/pocetnoStanje";
 
 export default class App extends Component {
   constructor(props) {
@@ -30,11 +32,7 @@ export default class App extends Component {
     const inicijalnoStanje = {
       highscore: stanjeIzBrowsera
         ? stanjeIzBrowsera.highscore
-        : {
-            pogadjanjeBrojeva: [],
-            igraBoja: [],
-            ivaninaIgra: [],
-          },
+        : pocetnoStanjeIzFilea.highscore,
       brojPokusaja: 0,
       feedback: "",
       username: "",
@@ -48,8 +46,12 @@ export default class App extends Component {
     proizvod: "Čekić",
   };
 
+  componentDidMount() {
+    localStorage.setItem("stanje", JSON.stringify(this.state));
+  }
+
   componentDidUpdate() {
-    //console.log("evo me jfhkjfdhjkfdjkfd");
+    localStorage.setItem("stanje", JSON.stringify(this.state));
   }
 
   handleLogin = (username = "", inputName = "") => {
@@ -60,7 +62,6 @@ export default class App extends Component {
 
   promijeniStanje = (feedback) => {
     let novoStanje = izracunajIgru1(feedback, this.state);
-    localStorage.setItem("stanje", JSON.stringify(novoStanje));
     this.setState(novoStanje);
   };
 
@@ -170,6 +171,21 @@ export default class App extends Component {
                 }
               />
               <Route
+                path='/lukaFundaIgra'
+                element={
+                  this.state.username === "" ? (
+                    <Navigate to='/login' replace={true} />
+                  ) : (
+                    <IgraBrziKlik
+                      dodajUHighscore={(imePropa, vrijednostPropa) =>
+                        this.dodajHighscoreUStanje(imePropa, vrijednostPropa)
+                      }
+                      username={this.state.username}
+                    />
+                  )
+                }
+              />
+              <Route
                 path='/domagojevaIgra'
                 element={
                   this.state.username === "" ? (
@@ -221,6 +237,16 @@ export default class App extends Component {
                       highscore={this.state.highscore}
                       username={this.state.username}
                       imeIgre='Tomislavova Igra'
+                    />
+                  }
+                />
+                <Route
+                  path='lukaFundaIgra'
+                  element={
+                    <PojedinacniHighscore
+                      highscore={this.state.highscore}
+                      username={this.state.username}
+                      imeIgre='Brzi Klik'
                     />
                   }
                 />
