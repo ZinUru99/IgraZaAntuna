@@ -1,0 +1,55 @@
+.brziKlikOuterDiv
+{
+    margin: 0 auto;
+    padding: 2em 0em;
+    width: 60%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.brziKlikInnerDiv
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.brziKlikText
+{
+    padding: 2em 0em;
+}
+.brziKlikText p
+{
+    text-align: center;
+}
+
+.menuBotuni
+{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.menuBotun
+{
+    border-radius: 15%;
+    border: 1px solid rgb(198, 198, 198);
+    text-align: center;
+    margin: 10px 0px;
+}
+#clickButton
+{
+    border: 1px solid rgb(198, 198, 198);
+    border-radius: 15%;
+    width: 50%;
+    height: 15em;
+    text-align: center;
+}
+
+#clickButton:active
+{
+    background-color: rgb(198, 198, 198);
+}
