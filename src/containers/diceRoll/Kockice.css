@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+  border: 1px solid grey;
+  background-color: rgb(250, 250, 250);
+  margin: auto;
+  width: 1000px;
+  height: 450px;
+  margin-top: 50px;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 35px;
+}
+.button {
+  background-color: rgb(1, 68, 251);
+  border: 3px solid gray;
+  border-radius: 10%;
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+  padding: 0.5em;
+  margin-right: 0.5em;
+}
+.dice-image {
+  margin: 1vh;
+  width: 5rem;
+}
+
+.DiceRoll {
+  text-align: center;
+}

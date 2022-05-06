@@ -1,0 +1,16 @@
+header{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(55, 0, 255);
+  height:150px;
+}
+
+
+nav{
+  height: fit-content;
+}
+
+#naslovnaSlika{
+  height: 120px;
+}
